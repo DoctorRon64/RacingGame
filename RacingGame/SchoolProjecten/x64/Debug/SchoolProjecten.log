@@ -1,0 +1,2 @@
+﻿main.obj : error LNK2001: unresolved external symbol "public: static class sf::Color const sf::Color::White" (?White@Color@sf@@2V12@B)
+C:\Users\piepm\Desktop\_Repo\RacingGame\RacingGame\x64\Debug\SchoolProjecten.exe : fatal error LNK1120: 1 unresolved externals
