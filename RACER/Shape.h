@@ -9,8 +9,9 @@ private:
 public:
 	Shape();
 	Shape(int w, int h);
-	void setAlpha(float a);
-	float area();
-	void draw();
+	virtual void setAlpha(float a);
+	virtual void Resize(int w, int h);
+	virtual float area();
+	virtual void draw();
 };
 

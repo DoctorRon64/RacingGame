@@ -12,7 +12,6 @@ private:
 public:
 	Rectangle();
 	Rectangle(int w, int h);
-	void setAlpha(float a);
 	void draw(sf::RenderWindow* window);
 };
 

@@ -15,11 +15,6 @@ Rectangle::Rectangle(int w, int h)
 	alpha = 0.0;
 }
 
-void Rectangle::setAlpha(float a)
-{
-	alpha = a;
-}
-
 void Rectangle::draw(sf::RenderWindow* window)
 {
 	sf::RectangleShape rectangle(sf::Vector2f(width, height));

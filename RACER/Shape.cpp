@@ -19,6 +19,12 @@ void Shape::setAlpha(float a)
 	alpha = a;
 }
 
+void Shape::Resize(int w, int h)
+{
+	width = w;
+	height = h;
+}
+
 float Shape::area()
 {
 	return width * height;
