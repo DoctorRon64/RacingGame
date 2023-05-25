@@ -4,14 +4,8 @@
 
 class Rectangle : public Shape {
 
-private:
-	int width;
-	int height;
-	float alpha;
-
 public:
-	Rectangle();
-	Rectangle(int w, int h);
+	Rectangle(float x, float y, int w, int h, int line, float a);
 	void draw(sf::RenderWindow* window);
 };
 

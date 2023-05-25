@@ -10,9 +10,7 @@ int main()
 	sf::RenderWindow* window;
 	window = new sf::RenderWindow(sf::VideoMode(1000, 500), "SFML", sf::Style::Close | sf::Style::Resize);
 
-	Rectangle Speler = Rectangle(100, 200);
-	Speler.setAlpha(0.5);
-	Speler.draw(window);
+	Rectangle Player = Rectangle(100, 100, 100, 100, 2, 1);
 
 	while (window->isOpen())
 	{
@@ -22,7 +20,7 @@ int main()
 			if (evnt.type == evnt.Closed) { window->close(); }
 			window->clear(sf::Color::Cyan);
 
-			Speler.draw(window);
+			Player.draw(window);
 			window->display();
 		}
 	};

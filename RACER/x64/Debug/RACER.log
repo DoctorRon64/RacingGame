@@ -1,17 +1,18 @@
-﻿  main.cpp
-E:\Technics\_Repository\RacingGame\RACER\main.cpp(31,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Rectangle.cpp
-E:\Technics\_Repository\RacingGame\RACER\Rectangle.cpp(20,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+﻿  Rectangle.cpp
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\Rectangle.cpp(16,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-E:\Technics\_Repository\RacingGame\RACER\Rectangle.cpp(20,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\Rectangle.cpp(16,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-  Shape.cpp
-E:\Technics\_Repository\RacingGame\RACER\Shape.cpp(30,15): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\Rectangle.cpp(18,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\main.cpp(13,30): error C2512: 'Rectangle': no appropriate default constructor available
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\main.cpp(13,30): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\main.cpp(13,19): error C2512: 'Rectangle': no appropriate default constructor available
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\Rectangle.h(5,7): message : see declaration of 'Rectangle'
   Generating Code...
-  RACER.vcxproj -> E:\Technics\_Repository\RacingGame\RACER\x64\Debug\RACER.exe

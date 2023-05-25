@@ -1,27 +1,18 @@
 #include "Rectangle.h"
 #include <SFML/Graphics.hpp>
 
-Rectangle::Rectangle()
+Rectangle::Rectangle(float x, float y, int w, int h, int line,float a)
 {
-	width = 0;
-	height = 0;
-	alpha = 0.0;
-}
-
-Rectangle::Rectangle(int w, int h)
-{
-	width = w;
-	height = h;
-	alpha = 0.0;
-}
+	
+}	
 
 void Rectangle::draw(sf::RenderWindow* window)
 {
 	sf::RectangleShape rectangle(sf::Vector2f(width, height));
 	rectangle.setFillColor(sf::Color::Red);
-	rectangle.setOutlineThickness(2);
+	rectangle.setOutlineThickness(lineThickness);
 	rectangle.setOutlineColor(sf::Color::White);
-	rectangle.setPosition(100, 100);
+	rectangle.setPosition(xPos, yPos);
 
 	window->draw(rectangle);
 }

@@ -1,22 +1,29 @@
 #include "Shape.h"
 
-Shape::Shape()
+Shape::Shape(float x, float y, int w, int h, int line, float a) 
 {
-	width = 0;
-	height = 0;
-	alpha = 0.0;
-}
-
-Shape::Shape(int w, int h)
-{
+	xPos = x;
+	yPos = y;
 	width = w;
 	height = h;
-	alpha = 0.0;
+	lineThickness = line;
+	alpha = a;
+}
+
+void Shape::setPosition(int x, int y) 
+{
+	xPos = x;
+	yPos = y;
 }
 
 void Shape::setAlpha(float a)
 {
 	alpha = a;
+}
+
+void Shape::setLineThickness(int lineT) 
+{
+	lineThickness = lineT;
 }
 
 void Shape::Resize(int w, int h)
