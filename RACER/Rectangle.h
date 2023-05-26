@@ -5,7 +5,7 @@
 class Rectangle : public Shape {
 
 public:
-	Rectangle(float x, float y, int w, int h, int line, float a);
+	Rectangle(float x, float y, float w, float h, sf::Color c);
 	void draw(sf::RenderWindow* window);
 };
 

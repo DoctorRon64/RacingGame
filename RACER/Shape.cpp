@@ -1,40 +1,25 @@
 #include "Shape.h"
+#include <SFML/Graphics.hpp>
 
-Shape::Shape(float x, float y, int w, int h, int line, float a) 
+Shape::Shape(float x, float y, float w, float h, sf::Color c)
 {
 	xPos = x;
 	yPos = y;
 	width = w;
 	height = h;
-	lineThickness = line;
-	alpha = a;
+	colorShape = c;
 }
 
-void Shape::setPosition(int x, int y) 
+void Shape::setPosition(float x, float y) 
 {
 	xPos = x;
 	yPos = y;
 }
 
-void Shape::setAlpha(float a)
-{
-	alpha = a;
-}
-
-void Shape::setLineThickness(int lineT) 
-{
-	lineThickness = lineT;
-}
-
-void Shape::Resize(int w, int h)
+void Shape::Resize(float w, float h)
 {
 	width = w;
 	height = h;
-}
-
-float Shape::area()
-{
-	return width * height;
 }
 
 void Shape::draw()

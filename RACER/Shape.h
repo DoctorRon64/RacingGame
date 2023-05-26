@@ -1,20 +1,18 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
 class Shape {
 
 protected:
-	int width, height;
-	int lineThickness;
-	float alpha;
+	float width, height;
 	float xPos, yPos;
+	sf::Color colorShape;
 
 public:
-	Shape(float x, float y, int w, int h, int line, float a);
-	virtual void setAlpha(float a);
-	virtual void setPosition(int x, int y);
-	virtual void Resize(int w, int h);
-	virtual void setLineThickness(int lineT);
-	virtual float area();
+	Shape() = default;
+	Shape(float x, float y, float w, float h, sf::Color c);
+	virtual void setPosition(float x, float y);
+	virtual void Resize(float w, float h);
 	virtual void draw();
 };
 
