@@ -4,17 +4,18 @@
 class Player
 {
 private:
-	float speed;
 	sf::Vector2f velocity, acceleration;
-	float xPos, yPos;
+	sf::Vector2f position;
+	float friction;
+	float speed;
 	float width, height;
+	static float clamp(float value, float min, float max);
 
 public:
-	Player(float x, float y, float s, float w, float h);
+	Player(float x, float y, float w, float h, float s, float f);
 	void setSpeed(float s);
 	void Input();
-	void applyForce(sf::Vector2f force);
-	void update(float deltatime);
+	void update(float deltatime, sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
 };
 

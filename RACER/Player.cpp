@@ -1,15 +1,65 @@
 #include "Player.h"
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
-Player::Player(float x, float y, float s, float w, float h)
+Player::Player(float x, float y, float w, float h, float s, float f)
+	: position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f)
 {
-	xPos = x;
-	yPos = y;
-	speed = s;
-	velocity = sf::Vector2f(0.0f, 0.0f);
+	
+}
+
+void Player::Input()
+{
+	//zetten we de versnelling juist afhankelijk van knop press
 	acceleration = sf::Vector2f(0.0f, 0.0f);
-	width = w;
-	height = h;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		acceleration.x = -speed;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		acceleration.x = speed;
+	}
+	else 
+	{
+		acceleration.x = 0.0f;
+	}
+}
+
+float Player::clamp(float value, float min, float max)
+{
+	if (value < min)
+		return min;
+	if (value > max)
+		return max;
+	return value;
+}
+
+void Player::update(float deltaTime, sf::RenderWindow* window)
+{
+	Input();
+	
+	//adden we friction
+	velocity.x -= friction * velocity.x * deltaTime;
+	//v = a * deltaTime
+	velocity += acceleration * deltaTime;
+
+	//we hebben een maxSpeed waar we aan houden
+	const float maxVelocity = speed;
+	if (velocity.x > maxVelocity)
+		velocity.x = maxVelocity;
+	else if (velocity.x < -maxVelocity)
+		velocity.x = -maxVelocity;
+
+	//s = v * deltaTime afstand
+	position += velocity * deltaTime;
+
+	//ga niet uit de border
+	sf::Vector2u windowSize = window->getSize();
+	const float leftBoundary = 0.0f;
+	const float rightBoundary = windowSize.x - width * 2;
+	position.x = clamp(position.x, leftBoundary, rightBoundary);
 }
 
 void Player::setSpeed(float s) 
@@ -17,49 +67,9 @@ void Player::setSpeed(float s)
 	speed = s;
 }
 
-void Player::applyForce(sf::Vector2f force) 
-{
-	acceleration += force;
-}
-
-void Player::Input()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		applyForce(sf::Vector2f(-speed, 0.0f));
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		applyForce(sf::Vector2f(speed, 0.0f));
-	}
-}
-
-void Player::update(float deltaTime)
-{
-	Input();
-	velocity += acceleration * deltaTime;
-
-	float maxSpeed = speed;
-	if (velocity.x > maxSpeed)
-		velocity.x = maxSpeed;
-	else if (velocity.x < -maxSpeed)
-		velocity.x = -maxSpeed;
-
-	xPos = xPos + velocity.x * deltaTime;
-
-	if (xPos >= sf::VideoMode::getDesktopMode().width) {
-		xPos = sf::VideoMode::getDesktopMode().width;
-	}
-	else if (xPos < 0) {
-		xPos = 0;
-	}
-
-	acceleration = sf::Vector2f(0.0f, 0.0f);
-}
-
 void Player::draw(sf::RenderWindow* window)
 {
 	sf::CircleShape triangle(width, height);
-	triangle.setPosition(xPos, yPos);
+	triangle.setPosition(position);
 	window->draw(triangle);
 }
