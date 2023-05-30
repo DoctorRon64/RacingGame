@@ -1,3 +1,1 @@
-﻿  Player.cpp
-E:\Technics\_Repository\RacingGame\RACER\Player.cpp(72,34): warning C4244: 'argument': conversion from 'float' to 'size_t', possible loss of data
-  RACER.vcxproj -> E:\Technics\_Repository\RacingGame\RACER\x64\Debug\RACER.exe
+﻿  RACER.vcxproj -> C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\x64\Debug\RACER.exe

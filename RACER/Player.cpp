@@ -2,6 +2,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+using namespace std;
+
 Player::Player(float x, float y, float w, float h, float s, float f)
 	: position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f)
 {
@@ -24,6 +26,7 @@ void Player::Input()
 	else 
 	{
 		acceleration.x = 0.0f;
+		velocity.x = 0.0f;
 	}
 }
 
@@ -54,6 +57,14 @@ void Player::update(float deltaTime, sf::RenderWindow* window)
 
 	//s = v * deltaTime afstand
 	position += velocity * deltaTime;
+
+	std::cout << velocity.x;
+	std::cout << "velocity" << std::endl;
+	std::cout << acceleration.x;
+	std::cout << "acceleration" << std::endl;
+	std::cout << position.x;
+	std::cout << "position x" << std::endl;
+
 
 	//ga niet uit de border
 	sf::Vector2u windowSize = window->getSize();
