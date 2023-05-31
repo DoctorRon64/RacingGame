@@ -23,11 +23,6 @@ void Player::Input()
 	{
 		acceleration.x = speed;
 	}
-	else 
-	{
-		acceleration.x = 0.0f;
-		velocity.x = 0.0f;
-	}
 }
 
 float Player::clamp(float value, float min, float max)
@@ -57,14 +52,6 @@ void Player::update(float deltaTime, sf::RenderWindow* window)
 
 	//s = v * deltaTime afstand
 	position += velocity * deltaTime;
-
-	std::cout << velocity.x;
-	std::cout << "velocity" << std::endl;
-	std::cout << acceleration.x;
-	std::cout << "acceleration" << std::endl;
-	std::cout << position.x;
-	std::cout << "position x" << std::endl;
-
 
 	//ga niet uit de border
 	sf::Vector2u windowSize = window->getSize();
