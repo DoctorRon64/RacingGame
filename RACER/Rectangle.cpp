@@ -8,7 +8,13 @@ Rectangle::Rectangle(float x, float y, float w, float h, sf::Color c)
 	width = w;
 	height = h;
 	colorShape = c;
-}	
+}
+
+void Rectangle::setPosition(float x, float y)
+{
+	xPos = x;
+	yPos = y;
+}
 
 void Rectangle::draw(sf::RenderWindow* window)
 {

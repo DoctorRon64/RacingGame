@@ -1,24 +1,22 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <Windows.h>
-
 #include "Shape.h"
-#include "Circle.h"
-#include "Triangle.h"
-#include "Rectangle.h"
 #include "Player.h"
+#include "Car.h"
 
 using namespace std;
 
 int main()
 {
 	sf::RenderWindow* window;
-	window = new sf::RenderWindow(sf::VideoMode(500, 500), "SFML", sf::Style::Close | sf::Style::Resize);
+	window = new sf::RenderWindow(sf::VideoMode(1000, 500), "SFML", sf::Style::Close | sf::Style::Resize);
 
 	sf::Clock clock;
 	sf::Time deltaTime;
 
-	Player* player = new Player(500, 450, 20, 3, 500, 3.0f);
+	Player player = Player(500, 450, 20, 3, 1000, 3.0f);
+	Car EnemieCar = Car(10, 10, 200, 200);
 
 	while (window->isOpen())
 	{
@@ -27,13 +25,15 @@ int main()
 		{
 			if (evnt.type == evnt.Closed) { window->close(); }
 		}
-			deltaTime = clock.restart();
-			float deltaTimeInSeconds = deltaTime.asSeconds();
-			player->update(deltaTimeInSeconds, window);
-			
-			window->clear(sf::Color(104, 104, 104));
-			player->draw(window);
-			window->display();
+
+		deltaTime = clock.restart();
+		float deltaTimeInSeconds = deltaTime.asSeconds();
+		player.update(deltaTimeInSeconds, window);
+		player.draw(window);
+		EnemieCar.draw(window);
+		
+		window->clear(sf::Color(104, 104, 104));
+		window->display();
 	};
 
 	return 0;

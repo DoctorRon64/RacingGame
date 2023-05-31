@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Shape.h"	
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -67,7 +68,6 @@ void Player::setSpeed(float s)
 
 void Player::draw(sf::RenderWindow* window)
 {
-	sf::CircleShape triangle(width, height);
-	triangle.setPosition(position);
-	window->draw(triangle);
+	Shape triangle = Shape(position.x, position.y, width, height, 0, sf::Color().Yellow);
+	triangle.drawTri(window);
 }
