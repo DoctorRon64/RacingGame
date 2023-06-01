@@ -1,5 +1,7 @@
-﻿  Car.cpp
-  Player.cpp
-  main.cpp
+﻿  main.cpp
+  windowGraphics.cpp
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\windowGraphics.h(5,17): error C2653: 'sf': is not a class or namespace name
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\windowGraphics.h(5,21): error C2061: syntax error: identifier 'RenderWindow'
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\windowGraphics.cpp(4,17): error C2511: 'windowGraphics::windowGraphics(sf::RenderWindow *)': overloaded member function not found in 'windowGraphics'
+C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\windowGraphics.h(2,7): message : see declaration of 'windowGraphics'
   Generating Code...
-  RACER.vcxproj -> C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\x64\Debug\RACER.exe

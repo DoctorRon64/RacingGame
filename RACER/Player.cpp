@@ -43,6 +43,7 @@ void Player::update(float deltaTime, sf::RenderWindow* window)
 	
 	//adden we friction
 	velocity.x -= friction * velocity.x * deltaTime;
+
 	//v = a * deltaTime
 	velocity += acceleration * deltaTime;
 
