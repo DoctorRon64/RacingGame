@@ -1,19 +1,21 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "RigidBody.h"
 
 class Car
 {
 private:
-	sf::Vector2f forces;
-	sf::Vector2f acceleration, velocity, position;
+	sf::Vector2f position;
 	sf::Texture texture;
 	sf::Sprite sprite;
-	float mass;
+	float speed;
 	float friction;
 	float width, height;
+	RigidBody rb;
 
 public:
-	Car(float x, float y, float w, float h, float m, float f);
-	void draw(sf::RenderWindow* window, float deltaTime);
+	Car(float x, float y, float w, float h, float s, float f);
+	float clamp(float value, float min, float max);
+	void update(sf::RenderWindow* window, float deltaTime);
+	void draw(sf::RenderWindow* window);
 };
-
