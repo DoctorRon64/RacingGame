@@ -5,6 +5,8 @@ class Car
 {
 private:
 	sf::Vector2f position;
+	sf::Texture texture;
+	sf::Sprite sprite;
 	float width, height;
 
 public:

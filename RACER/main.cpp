@@ -15,8 +15,8 @@ int main()
 	sf::Clock clock;
 	sf::Time deltaTime;
 
-	Player player = Player(500, 450, 20, 3, 1000, 3.0f);
-	Car EnemieCar = Car(10, 10, 200, 200);
+	Player player = Player(500, 400, 0.12f, 0.12f, 2000, 3.0f);
+	Car car = Car(100, 20, 0.1f, 0.1f);
 
 	while (window->isOpen())
 	{
@@ -25,14 +25,13 @@ int main()
 		{
 			if (evnt.type == evnt.Closed) { window->close(); }
 		}
-
+		window->clear(sf::Color(104, 104, 104));
 		deltaTime = clock.restart();
 		float deltaTimeInSeconds = deltaTime.asSeconds();
+
 		player.update(deltaTimeInSeconds, window);
-		player.draw(window);
-		EnemieCar.draw(window);
-		
-		window->clear(sf::Color(104, 104, 104));
+		car.draw(window);
+
 		window->display();
 	};
 

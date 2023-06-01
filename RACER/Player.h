@@ -4,8 +4,9 @@
 class Player
 {
 private:
-	sf::Vector2f velocity, acceleration;
-	sf::Vector2f position;
+	sf::Vector2f velocity, acceleration, position;
+	sf::Texture texture;
+	sf::Sprite sprite;
 	float friction;
 	float speed;
 	float width, height;

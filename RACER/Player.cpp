@@ -8,7 +8,9 @@ using namespace std;
 Player::Player(float x, float y, float w, float h, float s, float f)
 	: position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f)
 {
-	
+	texture.loadFromFile("textures/PlayerCar.png");
+	sprite = sf::Sprite(texture);
+	sprite.setScale(width, height);
 }
 
 void Player::Input()
@@ -44,21 +46,16 @@ void Player::update(float deltaTime, sf::RenderWindow* window)
 	//v = a * deltaTime
 	velocity += acceleration * deltaTime;
 
-	//we hebben een maxSpeed waar we aan houden
-	const float maxVelocity = speed;
-	if (velocity.x > maxVelocity)
-		velocity.x = maxVelocity;
-	else if (velocity.x < -maxVelocity)
-		velocity.x = -maxVelocity;
-
 	//s = v * deltaTime afstand
 	position += velocity * deltaTime;
 
 	//ga niet uit de border
 	sf::Vector2u windowSize = window->getSize();
 	const float leftBoundary = 0.0f;
-	const float rightBoundary = windowSize.x - width * 2;
+	const float rightBoundary = windowSize.x - (sprite.getTexture()->getSize().x * sprite.getScale().x);
 	position.x = clamp(position.x, leftBoundary, rightBoundary);
+
+	draw(window);
 }
 
 void Player::setSpeed(float s) 
@@ -68,6 +65,6 @@ void Player::setSpeed(float s)
 
 void Player::draw(sf::RenderWindow* window)
 {
-	Shape triangle = Shape(position.x, position.y, width, height, 0, sf::Color().Yellow);
-	triangle.drawTri(window);
+	sprite.setPosition(position.x, position.y);
+	window->draw(sprite);
 }
