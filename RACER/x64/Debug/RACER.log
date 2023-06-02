@@ -1,1 +1,9 @@
-﻿  RACER.vcxproj -> E:\Technics\_Repository\RacingGame\RACER\x64\Debug\RACER.exe
+﻿  Car.cpp
+  main.cpp
+E:\Technics\_Repository\RacingGame\RACER\main.cpp(36,54): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+  Generating Code...
+  RACER.vcxproj -> E:\Technics\_Repository\RacingGame\RACER\x64\Debug\RACER.exe

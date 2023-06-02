@@ -15,7 +15,7 @@ private:
 
 public:
 	Car(float x, float y, float w, float h, float s, float f);
-	float clamp(float value, float min, float max);
 	void update(sf::RenderWindow* window, float deltaTime);
+	void CheckIfDeath(sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
 };
