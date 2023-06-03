@@ -16,6 +16,6 @@ private:
 public:
 	Car(float x, float y, float w, float h, float s, float f);
 	void update(sf::RenderWindow* window, float deltaTime);
-	void CheckIfDeath(sf::RenderWindow* window);
+	bool CheckIfDeath(sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
 };

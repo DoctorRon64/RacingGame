@@ -12,21 +12,21 @@ Car::Car(float x, float y, float w, float h, float s, float f)
 
 void Car::update(sf::RenderWindow* window, float deltaTime) 
 {
-	CheckIfDeath(window);
 	rb.Update(deltaTime);
 	position = rb.getPosition();
 	sprite.setPosition(position);
 	draw(window);
 }
 
-void Car::CheckIfDeath(sf::RenderWindow* window)
+bool Car::CheckIfDeath(sf::RenderWindow* window)
 {
 	sf::Vector2u windowSize = window->getSize();
 	const float boundary = windowSize.y + (sprite.getTexture()->getSize().y * sprite.getScale().y);
-	if (position.y >= boundary) 
+	if (position.y >= boundary)
 	{
-		delete this;
+		return true;
 	}
+	return false;
 }
 
 void Car::draw(sf::RenderWindow* window) 
