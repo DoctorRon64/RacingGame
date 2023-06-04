@@ -33,3 +33,9 @@ void Car::draw(sf::RenderWindow* window)
 {
 	window->draw(sprite);
 }
+
+float Car::getCarWidth() 
+{
+	float width = sprite.getTexture()->getSize().x * sprite.getScale().x;
+	return width;
+}

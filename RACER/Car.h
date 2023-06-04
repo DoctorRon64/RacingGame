@@ -18,4 +18,5 @@ public:
 	void update(sf::RenderWindow* window, float deltaTime);
 	bool CheckIfDeath(sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
+	float getCarWidth();
 };

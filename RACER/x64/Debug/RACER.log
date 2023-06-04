@@ -1,13 +1,2 @@
-﻿  Car.cpp
-  main.cpp
-C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\main.cpp(39,54): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-  Player.cpp
-  RigidBody.cpp
-  Shape.cpp
-C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\Shape.cpp(36,34): warning C4244: 'argument': conversion from 'float' to 'size_t', possible loss of data
-  Generating Code...
-  RACER.vcxproj -> C:\Users\DrRon\Documents\_Repository\RacingGame\RACER\x64\Debug\RACER.exe
+﻿  GameManager.cpp
+  RACER.vcxproj -> E:\Technics\_Repository\RacingGame\RACER\x64\Debug\RACER.exe
