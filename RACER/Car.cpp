@@ -2,8 +2,8 @@
 #include "Shape.h"
 #include <SFML\Graphics.hpp>
 
-Car::Car(float x, float y, float w, float h, float s, float f, sf::Sprite spriteRef)
-	: position(x, y), width(w), height(h), speed(s), friction(f), rb(position.x, position.y, speed, friction), sprite(spriteRef)
+Car::Car(float x, float y, float w, float h, float s, float f, float Carmass, sf::Sprite spriteRef)
+	: position(x, y), width(w), height(h), speed(s), friction(f), rb(position.x, position.y, speed, friction, Carmass), sprite(spriteRef)
 {
 	sprite.setScale(width, height);
 }

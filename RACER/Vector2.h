@@ -1,13 +1,13 @@
 #pragma once
-namespace VectorClass {
-	class Vector2
-	{
-	private:
-		float xPos;
-		float yPos;
-	public:
-		Vector2(float x, float y);
-	};
+namespace Vector2P {
+    class Vector2
+    {
+    public:
+        float x;
+        float y;
+
+        Vector2(float _x, float _y);
+    }
 }
 
 

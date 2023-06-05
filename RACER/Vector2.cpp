@@ -1,8 +1,12 @@
 #include "Vector2.h"
-using namespace VectorClass;
+using namespace Vector2P;
 
-Vector2::Vector2(float x, float y)
+Vector2::Vector2(float _x, float _y)
 {
-	xPos = x;
-	yPos = y;
+	x = _x;
+	y = _y;
+
+
+
+
 };

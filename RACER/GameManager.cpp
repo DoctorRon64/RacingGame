@@ -10,7 +10,7 @@ GameManager::GameManager(sf::RenderWindow* window, TextureLibrary* TLib, float s
 	CreateCar(randomValue);
 	carWidth = car->getCarWidth();
 
-	player = new Player(500, (sH - 100) , 0.12f, 0.12f, 2000, 4.0f, textureLibrary->PlayerSprite);
+	player = new Player(500, (sH - 100) , 0.12f, 0.12f, 2000, 4.0f, 1, textureLibrary->PlayerSprite);
 
 	Score = 0;
 	GameState = 0;
@@ -18,11 +18,11 @@ GameManager::GameManager(sf::RenderWindow* window, TextureLibrary* TLib, float s
 
 void GameManager::Update(sf::RenderWindow* window, float deltaTime)
 {
-	//RigidBody add forces and mass
-	//Player add forces and mass
 	//Vector 2 class Operator Overloading
 	//List Cars hebben
 	//collision
+	//punten telling
+	//text display
 
 	player->update(deltaTime, window);
 
@@ -59,5 +59,5 @@ float GameManager::randomFloat(float min, float max)
 
 void GameManager::CreateCar(float maxSize)
 {
-	car = new Car(maxSize, -100, 0.1f, 0.1f, randomFloat(500,600), 4.0f, textureLibrary->CarSprite);
+	car = new Car(maxSize, -100, 0.1f, 0.1f, randomFloat(400,600), 30, 10, textureLibrary->CarSprite);
 }

@@ -9,94 +9,91 @@ using namespace std;
 
 int main()
 {
-	//render window
-	sf::RenderWindow* window;
-	window = new sf::RenderWindow(sf::VideoMode(1000, 1000), "SFML", sf::Style::Close | sf::Style::Resize);
+    // Render window
+    sf::RenderWindow* window;
+    window = new sf::RenderWindow(sf::VideoMode(1000, 500), "SFML", sf::Style::Close | sf::Style::Resize);
 
-	//Title & Icon
-	WindowSetttings settings = WindowSetttings(window);
+    // Title & Icon
+    WindowSetttings settings = WindowSetttings(window);
 
-	//CreateTextures
-	TextureLibrary* textureLibrary = new TextureLibrary();
-	textureLibrary->LoadFromFile();
-	textureLibrary->SetSprite();
+    // Create Textures
+    TextureLibrary* textureLibrary = new TextureLibrary();
+    textureLibrary->LoadFromFile();
+    textureLibrary->SetSprite();
 
-	//delta time setup
-	sf::Clock clock;
-	sf::Time deltaTime;
-	float deltaTimeInSeconds;
+    // Delta time setup
+    sf::Clock clock;
+    sf::Time deltaTime;
+    float deltaTimeInSeconds;
 
-	//GameManager
-	int GameState = 0;
+    // GameManager
+    int GameState = 0;
 
-	float screenWidth = window->getSize().x;
-	float screenHeight = window->getSize().y;
-	GameManager gameManager = GameManager(window, textureLibrary, screenWidth, screenHeight);
-		
-	//BackgroundSprites
-	sf::Texture *BgTextures[3];
-	*BgTextures = new sf::Texture[3];
-	sf::Sprite* BgSprites[3];
-	*BgSprites = new sf::Sprite[3];
+    float screenWidth = window->getSize().x;
+    float screenHeight = window->getSize().y;
+    GameManager gameManager = GameManager(window, textureLibrary, screenWidth, screenHeight);
 
-	for (int i = 0; i < sizeof(*BgTextures); i++)
-	{
-		switch (i)
-		{
-		case 0:
-			BgTextures[0]->loadFromFile("textures/Background.png");
-			BgSprites[0] = new sf::Sprite(*BgTextures[0]);
-			BgSprites[0]->setScale(screenWidth, screenHeight);
-			break;
-		case 1:
-			BgTextures[1]->loadFromFile("textures/Lose.png");
-			BgSprites[1] = new sf::Sprite(*BgTextures[1]);
-			BgSprites[1]->setScale(screenWidth, screenHeight);
-			break;
-		case 2:
-			BgTextures[2]->loadFromFile("textures/Win.png");
-			BgSprites[2] = new sf::Sprite(*BgTextures[2]);
-			BgSprites[2]->setScale(screenWidth, screenHeight);
-			break;
-		}
-	}
+    // BackgroundSprites
+    sf::Texture BgTextures[3];
+    sf::Sprite BgSprites[3];
 
-	//Update
-	while (window->isOpen())
-	{
-		//Event
-		sf::Event evnt;
-		while(window->pollEvent(evnt))
-		{
-			if (evnt.type == evnt.Closed) { window->close(); }
-		}
+    for (int i = 0; i < 3; i++)
+    {
+        switch (i)
+        {
+        case 0:
+            BgTextures[0].loadFromFile("textures/Background.png");
+            BgSprites[0].setTexture(BgTextures[0]);
+            //BgSprites[0].setScale(screenWidth / BgTextures[0].getSize().x, screenHeight / BgTextures[0].getSize().y);
+            break;
+        case 1:
+            BgTextures[1].loadFromFile("textures/Lose.png");
+            BgSprites[1].setTexture(BgTextures[1]);
+            BgSprites[1].setScale(screenWidth / BgTextures[1].getSize().x, screenHeight / BgTextures[1].getSize().y);
+            break;
+        case 2:
+            BgTextures[2].loadFromFile("textures/Win.png");
+            BgSprites[2].setTexture(BgTextures[2]);
+            BgSprites[2].setScale(screenWidth / BgTextures[2].getSize().x, screenHeight / BgTextures[2].getSize().y);
+            break;
+        }
+    }
 
-		std::cout << GameState << std::endl;
-		switch (GameState)
-		{
-		case 0:
-			window->draw(*BgSprites[0]);
-			break;
-		case 1:
-			window->draw(*BgSprites[1]);
-			break;
-		case 2:
-			window->draw(*BgSprites[2]);
-			break;
-		}
+    // Update
+    while (window->isOpen())
+    {
+        // Event
+        sf::Event evnt;
+        while (window->pollEvent(evnt))
+        {
+            if (evnt.type == evnt.Closed) { window->close(); }
+        }
 
-		deltaTime = clock.restart();
-		deltaTimeInSeconds = deltaTime.asSeconds();
+        switch (GameState)
+        {
+        case 0:
+            window->draw(BgSprites[0]);
+            break;
+        case 1:
+            window->draw(BgSprites[1]);
+            break;
+        case 2:
+            window->draw(BgSprites[2]);
+            break;
+        }
 
-		//update
-		if (GameState == 0)
-		{
-			gameManager.Update(window, deltaTimeInSeconds);
-			GameState = gameManager.GameState;
-		}
+        deltaTime = clock.restart();
+        deltaTimeInSeconds = deltaTime.asSeconds();
 
-		window->display();
-	};
+        // Update
+        if (GameState == 0)
+        {
+            gameManager.Update(window, deltaTimeInSeconds);
+            GameState = gameManager.GameState;
+        }
 
-	return 0;
+        window->display();
+    }
+
+    return 0;
 }
