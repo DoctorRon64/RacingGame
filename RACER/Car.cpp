@@ -2,11 +2,9 @@
 #include "Shape.h"
 #include <SFML\Graphics.hpp>
 
-Car::Car(float x, float y, float w, float h, float s, float f)
-	: position(x,y), width(w), height(h), speed(s), friction(f), rb(position.x, position.y, speed, friction)
+Car::Car(float x, float y, float w, float h, float s, float f, sf::Sprite spriteRef)
+	: position(x, y), width(w), height(h), speed(s), friction(f), rb(position.x, position.y, speed, friction), sprite(spriteRef)
 {
-	texture.loadFromFile("textures/Car.png");
-	sprite = sf::Sprite(texture);
 	sprite.setScale(width, height);
 }
 
@@ -38,4 +36,10 @@ float Car::getCarWidth()
 {
 	float width = sprite.getTexture()->getSize().x * sprite.getScale().x;
 	return width;
+}
+
+float Car::getCarHeight()
+{
+	float height = sprite.getTexture()->getSize().y * sprite.getScale().y;
+	return height;
 }

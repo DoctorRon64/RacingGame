@@ -6,7 +6,6 @@ class Car
 {
 private:
 	sf::Vector2f position;
-	sf::Texture texture;
 	sf::Sprite sprite;
 	float speed;
 	float friction;
@@ -14,9 +13,10 @@ private:
 	RigidBody rb;
 
 public:
-	Car(float x, float y, float w, float h, float s, float f);
+	Car(float x, float y, float w, float h, float s, float f, sf::Sprite SpriteRef);
 	void update(sf::RenderWindow* window, float deltaTime);
 	bool CheckIfDeath(sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
 	float getCarWidth();
+	float getCarHeight();
 };

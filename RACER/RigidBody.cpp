@@ -7,7 +7,6 @@ RigidBody::RigidBody(float x, float y, float s, float f)
 	speed = s;
 	friction = f;
 	gravity = 9.81f;
-	timeMax = 0.0f;
 	velocity = sf::Vector2f(0.0f, 0.0f);
 	acceleration.y = speed;
 }
@@ -16,14 +15,17 @@ void RigidBody::Update(float deltaTime)
 {
 	velocity = sf::Vector2f(0, speed);
 	acceleration = sf::Vector2f(0, -gravity);
-	timeMax = 2 * speed / gravity;
 
+	//v - friction * v * t
 	velocity.y -= friction * velocity.y * deltaTime;
+
+	//v = a * t
 	velocity += acceleration * deltaTime;
+	//s = v * t
 	position += velocity * deltaTime;
 }
 
-sf::Vector2f RigidBody::getPosition() 
+sf::Vector2f RigidBody::getPosition()
 {
 	return position;
 }

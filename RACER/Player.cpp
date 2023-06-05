@@ -5,11 +5,9 @@
 
 using namespace std;
 
-Player::Player(float x, float y, float w, float h, float s, float f)
-	: position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f)
+Player::Player(float x, float y, float w, float h, float s, float f, sf::Sprite spriteRef)
+	: position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f), sprite(spriteRef)
 {
-	texture.loadFromFile("textures/PlayerCar.png");
-	sprite = sf::Sprite(texture);
 	sprite.setScale(width, height);
 }
 

@@ -8,7 +8,6 @@ private:
 	float speed;
 	float friction;
 	float gravity;
-	float timeMax;
 	sf::Vector2f velocity, acceleration;
 	
 public:
