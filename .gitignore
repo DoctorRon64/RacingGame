@@ -435,4 +435,7 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudio
-RACER/x64/Debug
+RACER/x64/
+RACER/textures/
+RACER/lib/
+RACER/include/
