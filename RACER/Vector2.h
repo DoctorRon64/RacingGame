@@ -7,8 +7,15 @@ namespace Vector2P {
         float y;
 
         Vector2(float _x, float _y);
-    }
-}
+        Vector2 operator+(const Vector2& other) const;
+        Vector2 operator-(const Vector2& other) const;
+        Vector2 operator*(float scaler) const;
+        Vector2 operator/(float scaler) const;
+        Vector2 operator==(const Vector2& other) const;
+        Vector2 operator!=(const Vector2& other) const;
+
+    };
+};
 
 
 
