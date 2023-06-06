@@ -12,7 +12,8 @@ void Car::update(sf::RenderWindow* window, float deltaTime)
 {
 	rb.Update(deltaTime);
 	position = rb.getPosition();
-	sprite.setPosition(position);
+
+	sprite.setPosition(position.ToSFMLVector2());
 	draw(window);
 }
 

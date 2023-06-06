@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 using namespace std;
+using namespace Vector2P;
 
 Player::Player(float x, float y, float w, float h, float s, float f, float m, sf::Sprite spriteRef)
     : position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f), sprite(spriteRef), mass(m), forces(0.0f, 0.0f)
@@ -16,7 +17,7 @@ void Player::setSpeed(float s)
     speed = s;
 }
 
-void Player::ApplyForce(const sf::Vector2f& force)
+void Player::ApplyForce(const Vector2& force)
 {
     forces += force;
 }
@@ -33,7 +34,7 @@ float Player::clamp(float value, float min, float max)
 void Player::Input()
 {
     // Set acceleration based on keyboard input
-    acceleration = sf::Vector2f(0.0f, 0.0f);
+    acceleration = Vector2(0.0f, 0.0f);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
@@ -54,7 +55,7 @@ void Player::update(float deltaTime, sf::RenderWindow* window)
 
     // Apply forces
     acceleration += forces / mass;
-    forces = sf::Vector2f(0.0f, 0.0f);
+    forces = Vector2(0.0f, 0.0f);
 
     // Update velocity and position
     velocity += acceleration * deltaTime;

@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <string>
 #include <Windows.h>
 #include "WindowSetttings.h"
 #include "TextureLibrary.h"
@@ -34,30 +35,16 @@ int main()
     GameManager gameManager = GameManager(window, textureLibrary, screenWidth, screenHeight);
 
     // BackgroundSprites
-    sf::Texture BgTextures[3];
-    sf::Sprite BgSprites[3];
+    sf::Sprite BgSprite;
+    sf::Sprite LoseSprite;
+    sf::Sprite WinSprite;
+    BgSprite.setTexture(textureLibrary->BgTexture);
+    LoseSprite.setTexture(textureLibrary->LoseTexture);
+    WinSprite.setTexture(textureLibrary->WinTexture);
 
-    for (int i = 0; i < 3; i++)
-    {
-        switch (i)
-        {
-        case 0:
-            BgTextures[0].loadFromFile("textures/Background.png");
-            BgSprites[0].setTexture(BgTextures[0]);
-            //BgSprites[0].setScale(screenWidth / BgTextures[0].getSize().x, screenHeight / BgTextures[0].getSize().y);
-            break;
-        case 1:
-            BgTextures[1].loadFromFile("textures/Lose.png");
-            BgSprites[1].setTexture(BgTextures[1]);
-            BgSprites[1].setScale(screenWidth / BgTextures[1].getSize().x, screenHeight / BgTextures[1].getSize().y);
-            break;
-        case 2:
-            BgTextures[2].loadFromFile("textures/Win.png");
-            BgSprites[2].setTexture(BgTextures[2]);
-            BgSprites[2].setScale(screenWidth / BgTextures[2].getSize().x, screenHeight / BgTextures[2].getSize().y);
-            break;
-        }
-    }
+    LoseSprite.setScale(screenWidth / textureLibrary->LoseTexture.getSize().x, screenHeight / textureLibrary->LoseTexture.getSize().y);
+    WinSprite.setScale(screenWidth / textureLibrary->WinTexture.getSize().x, screenHeight / textureLibrary->WinTexture.getSize().y);
+    
 
     // Update
     while (window->isOpen())
@@ -72,13 +59,13 @@ int main()
         switch (GameState)
         {
         case 0:
-            window->draw(BgSprites[0]);
+            window->draw(BgSprite);
             break;
         case 1:
-            window->draw(BgSprites[1]);
+            window->draw(LoseSprite);
             break;
         case 2:
-            window->draw(BgSprites[2]);
+            window->draw(WinSprite);
             break;
         }
 

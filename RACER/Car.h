@@ -1,11 +1,12 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "RigidBody.h"
+#include "Vector2.h"
 
 class Car
 {
 private:
-	sf::Vector2f position;
+	Vector2P::Vector2 position;
 	sf::Sprite sprite;
 	float speed;
 	float friction;

@@ -9,6 +9,9 @@ void TextureLibrary::LoadFromFile()
 {
 	PlayerTexture.loadFromFile("textures/PlayerCar.png");
 	CarTexture.loadFromFile("textures/Car.png");
+	BgTexture.loadFromFile("textures/Background.png");
+	LoseTexture.loadFromFile("textures/Lose.png");
+	WinTexture.loadFromFile("textures/Win.png");
 }
 
 void TextureLibrary::SetSprite()

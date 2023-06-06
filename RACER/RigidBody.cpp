@@ -1,19 +1,15 @@
 #include "RigidBody.h"
 #include <SFML/Graphics.hpp>
+#include "Vector2.h"
+using namespace Vector2P;
 
-RigidBody::RigidBody(float x, float y, float s, float f, float m)
+RigidBody::RigidBody(float x, float y, float s, float f, float m) : 
+    position(x, y) , speed(s), friction(f), gravity(9.81f), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), mass(m), forces(0.0f, 0.0f)
 {
-    position = sf::Vector2f(x, y);
-    speed = s;
-    friction = f;
-    gravity = 9.81f;
-    velocity = sf::Vector2f(0.0f, 0.0f);
-    acceleration = sf::Vector2f(0.0f, 0.0f);
-    mass = m;
-    forces = sf::Vector2f(0.0f, 0.0f);
+
 }
 
-void RigidBody::ApplyForce(const sf::Vector2f& force)
+void RigidBody::ApplyForce(const Vector2& force)
 {
     forces += force;
 }
@@ -22,22 +18,22 @@ void RigidBody::Update(float deltaTime)
 {
     //V = speed
     //a = gravity;
-    velocity = sf::Vector2f(0, speed);
-    acceleration = sf::Vector2f(0, -gravity);
+    velocity = Vector2(0, speed);
+    acceleration = Vector2(0, -gravity);
 
     // Apply friction
     velocity.y -= friction * velocity.y * deltaTime;
 
     // Apply forces with a = F / m
     acceleration += forces / mass;
-    forces = sf::Vector2f(0.0f, 0.0f);
+    forces = Vector2(0.0f, 0.0f);
 
     // Update velocity and position with v = a * t and s = v * t
     velocity += acceleration * deltaTime;
-    position += velocity * deltaTime;
+    position.y += velocity.y * deltaTime;
 }
 
-sf::Vector2f RigidBody::getPosition()
+Vector2 RigidBody::getPosition()
 {
     return position;
 }

@@ -18,6 +18,7 @@ GameManager::GameManager(sf::RenderWindow* window, TextureLibrary* TLib, float s
 
 void GameManager::Update(sf::RenderWindow* window, float deltaTime)
 {
+	//TODO:
 	//Vector 2 class Operator Overloading
 	//List Cars hebben
 	//collision
