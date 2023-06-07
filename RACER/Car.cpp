@@ -1,6 +1,10 @@
 #include "Car.h"
-#include "Shape.h"
 #include <SFML\Graphics.hpp>
+
+Car::Car() : position(0, 0), width(0), height(0), speed(0), friction(0), rb(0, 0, 0, 0, 0), sprite()
+{
+
+}
 
 Car::Car(float x, float y, float w, float h, float s, float f, float Carmass, sf::Sprite spriteRef)
 	: position(x, y), width(w), height(h), speed(s), friction(f), rb(position.x, position.y, speed, friction, Carmass), sprite(spriteRef)

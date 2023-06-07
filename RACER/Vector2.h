@@ -16,11 +16,12 @@ namespace Vector2P {
         Vector2 operator/(float scaler) const;
         Vector2& operator+=(const Vector2& other);
         Vector2& operator-=(const Vector2& other);
-        sf::Vector2f ToSFMLVector2();
+        Vector2 operator-() const;
 
         bool operator==(const Vector2& other) const;
         bool operator!=(const Vector2& other) const;
 
+        sf::Vector2f ToSFMLVector2();
         static float SqrtMagnitude(const Vector2& other);
         static float Magnitude(const Vector2& other);
         float DotProduct(const Vector2& other) const;

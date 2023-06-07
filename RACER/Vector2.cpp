@@ -67,6 +67,11 @@ float Vector2::DotProduct(const Vector2& other) const
 	return x * other.x + y * other.y;
 }
 
+Vector2 Vector2::operator-() const
+{
+	return Vector2(-x, -y);
+}
+
 sf::Vector2f Vector2::ToSFMLVector2()
 {
 	return sf::Vector2f(x, y);

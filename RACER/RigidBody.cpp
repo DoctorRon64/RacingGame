@@ -16,6 +16,11 @@ void RigidBody::ApplyForce(const Vector2& force)
 
 void RigidBody::Update(float deltaTime)
 {
+    float amplitude = 0.01f;
+    float frequency = 0.02f;
+    float offsetX = amplitude * std::sin(frequency * position.y);
+    position.x += offsetX;
+
     //V = speed
     //a = gravity;
     velocity = Vector2(0, speed);

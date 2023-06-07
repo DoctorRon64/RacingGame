@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
 #include <random>
 #include <iostream>
@@ -11,19 +12,20 @@ using namespace std;
 class GameManager
 {
 private:
-	Player* player;
-	Car* car;
-	TextureLibrary* textureLibrary;
-	float screenWidth;
-	float screenHeight;
-	float carWidth;
+    Player* player;
+    Car* car;
+    TextureLibrary* textureLibrary;
+    float screenWidth;
+    float screenHeight;
+    float carWidth;
 
 public:
-	GameManager(sf::RenderWindow* window, TextureLibrary* TLib, float sW, float sH);
-	void Update(sf::RenderWindow* window, float deltaTime);
-	float randomFloat(float min, float max);
-	void CreateCar(float maxSize);
+    GameManager(sf::RenderWindow* window, TextureLibrary* TLib, float sW, float sH);
+    void Update(sf::RenderWindow* window, float deltaTime);
+    float randomFloat(float min, float max);
+    void CreateCar();
 
-	int Score;
-	int GameState;
+    int Score;
+    int GameState;
+    int CarAmount;
 };

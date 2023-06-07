@@ -30,9 +30,13 @@ int main()
     // GameManager
     int GameState = 0;
 
-    float screenWidth = window->getSize().x;
-    float screenHeight = window->getSize().y;
-    GameManager gameManager = GameManager(window, textureLibrary, screenWidth, screenHeight);
+    unsigned int screenWidth = window->getSize().x;
+    unsigned int screenHeight = window->getSize().y;
+    float screenWidthFloat = static_cast<float>(screenWidth);
+    float screenHeightFloat = static_cast<float>(screenHeight);
+
+
+    GameManager gameManager = GameManager(window, textureLibrary, screenWidthFloat, screenHeightFloat);
 
     // BackgroundSprites
     sf::Sprite BgSprite;
@@ -42,9 +46,8 @@ int main()
     LoseSprite.setTexture(textureLibrary->LoseTexture);
     WinSprite.setTexture(textureLibrary->WinTexture);
 
-    LoseSprite.setScale(screenWidth / textureLibrary->LoseTexture.getSize().x, screenHeight / textureLibrary->LoseTexture.getSize().y);
-    WinSprite.setScale(screenWidth / textureLibrary->WinTexture.getSize().x, screenHeight / textureLibrary->WinTexture.getSize().y);
-    
+    LoseSprite.setScale(screenWidthFloat / textureLibrary->LoseTexture.getSize().x, screenHeightFloat / textureLibrary->LoseTexture.getSize().y);
+    WinSprite.setScale(screenWidthFloat / textureLibrary->WinTexture.getSize().x, screenHeightFloat / textureLibrary->WinTexture.getSize().y);
 
     // Update
     while (window->isOpen())

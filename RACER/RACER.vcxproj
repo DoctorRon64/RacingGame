@@ -142,7 +142,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RigidBody.cpp" />
-    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="TextureLibrary.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="WindowSetttings.cpp" />
@@ -152,7 +151,6 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RigidBody.h" />
-    <ClInclude Include="Shape.h" />
     <ClInclude Include="TextureLibrary.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="WindowSetttings.h" />
