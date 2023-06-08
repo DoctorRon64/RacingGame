@@ -1,30 +1,29 @@
 #include "Car.h"
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
-Car::Car() : position(0, 0), width(0), height(0), speed(0), friction(0), rb(0, 0, 0, 0, 0), sprite()
-{
-
-}
-
-Car::Car(float x, float y, float w, float h, float s, float f, float Carmass, sf::Sprite spriteRef)
-	: position(x, y), width(w), height(h), speed(s), friction(f), rb(position.x, position.y, speed, friction, Carmass), sprite(spriteRef)
+Car::Car(float x, float y, float w, float h, float s, float f, float Carmass, sf::Sprite spriteRef, sf::RenderWindow* winD)
+	: position(x, y), width(w), height(h), speed(s), friction(f), sprite(spriteRef), window(winD)
 {
 	sprite.setScale(width, height);
 }
 
-void Car::update(sf::RenderWindow* window, float deltaTime) 
+void Car::update(float deltaTime)
 {
 	rb.Update(deltaTime);
 	position = rb.getPosition();
 
 	sprite.setPosition(position.ToSFMLVector2());
-	draw(window);
+	DrawCar();
 }
 
-bool Car::CheckIfDeath(sf::RenderWindow* window)
+v2P::Vector2 Car::getPosition()
 {
-	sf::Vector2u windowSize = window->getSize();
-	const float boundary = windowSize.y + (sprite.getTexture()->getSize().y * sprite.getScale().y);
+	return v2P::Vector2(position);
+}
+
+bool Car::CheckIfDeath(float sH)
+{
+	float boundary = sH + sprite.getGlobalBounds().height;
 	if (position.y >= boundary)
 	{
 		return true;
@@ -32,19 +31,19 @@ bool Car::CheckIfDeath(sf::RenderWindow* window)
 	return false;
 }
 
-void Car::draw(sf::RenderWindow* window) 
+void Car::DrawCar()
 {
 	window->draw(sprite);
 }
 
-float Car::getCarWidth() 
+float Car::getCarWidth()
 {
-	float width = sprite.getTexture()->getSize().x * sprite.getScale().x;
+	float width = sprite.getGlobalBounds().width;
 	return width;
 }
 
 float Car::getCarHeight()
 {
-	float height = sprite.getTexture()->getSize().y * sprite.getScale().y;
+	float height = sprite.getGlobalBounds().height;
 	return height;
 }

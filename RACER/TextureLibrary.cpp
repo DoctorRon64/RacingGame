@@ -1,4 +1,5 @@
 #include "TextureLibrary.h"
+#include <SFML/Graphics.hpp>
 
 TextureLibrary::TextureLibrary()
 {

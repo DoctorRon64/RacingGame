@@ -1,85 +1,85 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include <string>
-#include <Windows.h>
-#include "WindowSetttings.h"
 #include "TextureLibrary.h"
 #include "GameManager.h"
-
-using namespace std;
+#include <memory>
 
 int main()
 {
     // Render window
-    sf::RenderWindow* window;
-    window = new sf::RenderWindow(sf::VideoMode(1000, 500), "SFML", sf::Style::Close | sf::Style::Resize);
+    sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1000, 500), "SUPER ULTRA OMEGA ULTIMATE MEGA RACERRRRRRR!!!!!!!", sf::Style::Close | sf::Style::Resize);
 
-    // Title & Icon
-    WindowSetttings settings = WindowSetttings(window);
+    // Icon
+    sf::Image windowIcon;
+    windowIcon.loadFromFile("textures/icon.png");
+    window->setIcon(windowIcon.getSize().x, windowIcon.getSize().y, windowIcon.getPixelsPtr());
 
     // Create Textures
-    TextureLibrary* textureLibrary = new TextureLibrary();
-    textureLibrary->LoadFromFile();
-    textureLibrary->SetSprite();
+    TextureLibrary textureLibrary;
+    textureLibrary.LoadFromFile();
+    textureLibrary.SetSprite();
 
     // Delta time setup
     sf::Clock clock;
-    sf::Time deltaTime;
-    float deltaTimeInSeconds;
 
     // GameManager
-    int GameState = 0;
+    int gameState = 0;
 
+    // Assing screen width and height
     unsigned int screenWidth = window->getSize().x;
     unsigned int screenHeight = window->getSize().y;
     float screenWidthFloat = static_cast<float>(screenWidth);
     float screenHeightFloat = static_cast<float>(screenHeight);
 
-
-    GameManager gameManager = GameManager(window, textureLibrary, screenWidthFloat, screenHeightFloat);
+    GameManager gameManager(window, &textureLibrary, screenWidthFloat, screenHeightFloat);
 
     // BackgroundSprites
-    sf::Sprite BgSprite;
-    sf::Sprite LoseSprite;
-    sf::Sprite WinSprite;
-    BgSprite.setTexture(textureLibrary->BgTexture);
-    LoseSprite.setTexture(textureLibrary->LoseTexture);
-    WinSprite.setTexture(textureLibrary->WinTexture);
+    sf::Sprite bgSprite;
+    sf::Sprite loseSprite;
+    sf::Sprite winSprite;
+    bgSprite.setTexture(textureLibrary.BgTexture);
+    loseSprite.setTexture(textureLibrary.LoseTexture);
+    winSprite.setTexture(textureLibrary.WinTexture);
 
-    LoseSprite.setScale(screenWidthFloat / textureLibrary->LoseTexture.getSize().x, screenHeightFloat / textureLibrary->LoseTexture.getSize().y);
-    WinSprite.setScale(screenWidthFloat / textureLibrary->WinTexture.getSize().x, screenHeightFloat / textureLibrary->WinTexture.getSize().y);
+    loseSprite.setScale(screenWidthFloat / textureLibrary.LoseTexture.getSize().x, screenHeightFloat / textureLibrary.LoseTexture.getSize().y);
+    winSprite.setScale(screenWidthFloat / textureLibrary.WinTexture.getSize().x, screenHeightFloat / textureLibrary.WinTexture.getSize().y);
 
-    // Update
+    // Game loop
     while (window->isOpen())
     {
-        // Event
-        sf::Event evnt;
-        while (window->pollEvent(evnt))
+        // Event handling
+        sf::Event event;
+        while (window->pollEvent(event))
         {
-            if (evnt.type == evnt.Closed) { window->close(); }
+            if (event.type == sf::Event::Closed)
+            {
+                window->close();
+            }
         }
 
-        switch (GameState)
+        // Draw
+        window->clear();
+
+        switch (gameState)
         {
         case 0:
-            window->draw(BgSprite);
+            window->draw(bgSprite);
             break;
         case 1:
-            window->draw(LoseSprite);
+            window->draw(loseSprite);
             break;
         case 2:
-            window->draw(WinSprite);
+            window->draw(winSprite);
             break;
         }
 
-        deltaTime = clock.restart();
-        deltaTimeInSeconds = deltaTime.asSeconds();
-
         // Update
-        if (GameState == 0)
+        sf::Time deltaTime = clock.restart();
+        float deltaTimeInSeconds = deltaTime.asSeconds();
+
+        if (gameState == 0)
         {
-            gameManager.Update(window, deltaTimeInSeconds);
-            GameState = gameManager.GameState;
+            gameManager.Update(deltaTimeInSeconds);
+            gameState = gameManager.GameState;
         }
 
         window->display();

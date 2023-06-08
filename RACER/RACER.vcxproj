@@ -138,22 +138,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="CollisionDetect.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="TextureLibrary.cpp" />
     <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="WindowSetttings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
+    <ClInclude Include="CollisionDetect.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="TextureLibrary.h" />
     <ClInclude Include="Vector2.h" />
-    <ClInclude Include="WindowSetttings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,24 +1,26 @@
 #pragma once
-#include <SFML\Graphics.hpp>
-#include "RigidBody.h"
+
+#include <SFML/Graphics.hpp>
 #include "Vector2.h"
+#include "RigidBody.h"
 
 class Car
 {
 private:
-	Vector2P::Vector2 position;
-	sf::Sprite sprite;
-	float speed;
-	float friction;
-	float width, height;
-	RigidBody rb;
+    v2P::Vector2 position;
+    float width, height;
+    float speed;
+    float friction;
+    RigidBody rb;
+    sf::Sprite sprite;
+    sf::RenderWindow* window;
 
 public:
-	Car();
-	Car(float x, float y, float w, float h, float s, float f, float Carmass, sf::Sprite SpriteRef);
-	void update(sf::RenderWindow* window, float deltaTime);
-	bool CheckIfDeath(sf::RenderWindow* window);
-	void draw(sf::RenderWindow* window);
-	float getCarWidth();
-	float getCarHeight();
+    Car(float x, float y, float w, float h, float s, float f, float Carmass, sf::Sprite spriteRef, sf::RenderWindow* winD);
+    void update(float deltaTime);
+    v2P::Vector2 getPosition();
+    bool CheckIfDeath(float sH);
+    void DrawCar();
+    float getCarWidth();
+    float getCarHeight();
 };

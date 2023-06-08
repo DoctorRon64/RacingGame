@@ -1,10 +1,17 @@
 #include "RigidBody.h"
 #include <SFML/Graphics.hpp>
 #include "Vector2.h"
-using namespace Vector2P;
 
-RigidBody::RigidBody(float x, float y, float s, float f, float m) : 
-    position(x, y) , speed(s), friction(f), gravity(9.81f), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), mass(m), forces(0.0f, 0.0f)
+using namespace v2P;
+
+RigidBody::RigidBody() :
+    position(0.0f, 0.0f), speed(0.0f), friction(0.0f), gravity(9.81f), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), mass(0.0f), forces(0.0f, 0.0f)
+{
+
+}
+
+RigidBody::RigidBody(float x, float y, float s, float f, float m) :
+    position(x, y), speed(s), friction(f), gravity(9.81f), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), mass(m), forces(0.0f, 0.0f)
 {
 
 }

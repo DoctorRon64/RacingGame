@@ -1,22 +1,22 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "Vector2.h"
 
 class RigidBody
 {
 private:
-    Vector2P::Vector2 position;
+    v2P::Vector2 position;
     float speed;
     float friction;
     float gravity;
-    Vector2P::Vector2 velocity;
-    Vector2P::Vector2 acceleration;
+    v2P::Vector2 velocity;
+    v2P::Vector2 acceleration;
     float mass;
-    Vector2P::Vector2 forces;
+    v2P::Vector2 forces;
 
 public:
+    RigidBody();
     RigidBody(float x, float y, float s, float f, float m);
-    void ApplyForce(const Vector2P::Vector2& force);
+    void ApplyForce(const v2P::Vector2& force);
     void Update(float deltaTime);
-    Vector2P::Vector2 getPosition();
+    v2P::Vector2 getPosition();
 };

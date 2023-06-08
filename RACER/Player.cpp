@@ -1,14 +1,18 @@
 #include "Player.h"
-#include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Vector2.h"
 
-using namespace std;
-using namespace Vector2P;
+using namespace v2P;
 
-Player::Player(float x, float y, float w, float h, float s, float f, float m, sf::Sprite spriteRef)
-    : position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f), sprite(spriteRef), mass(m), forces(0.0f, 0.0f)
+Player::Player(float x, float y, float w, float h, float s, float f, float m, const sf::Sprite& spriteRef, sf::RenderWindow* win)
+    : position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f), sprite(spriteRef), mass(m), forces(0.0f, 0.0f), window(win)
 {
     sprite.setScale(width, height);
+}
+
+Vector2 Player::getPosition()
+{
+    return Vector2(position);
 }
 
 void Player::setSpeed(float s)
@@ -45,7 +49,7 @@ void Player::Input()
     }
 }
 
-void Player::update(float deltaTime, sf::RenderWindow* window)
+void Player::update(float sW, float deltaTime)
 {
     Input();
 
@@ -61,15 +65,14 @@ void Player::update(float deltaTime, sf::RenderWindow* window)
     position += velocity * deltaTime;
 
     // Keep player within the boundaries of the window
-    sf::Vector2u windowSize = window->getSize();
     const float leftBoundary = 0.0f;
-    const float rightBoundary = windowSize.x - (sprite.getTexture()->getSize().x * sprite.getScale().x);
+    const float rightBoundary = sW - sprite.getGlobalBounds().width;
     position.x = clamp(position.x, leftBoundary, rightBoundary);
 
-    draw(window);
+    draw();
 }
 
-void Player::draw(sf::RenderWindow* window)
+void Player::draw()
 {
     sprite.setPosition(position.x, position.y);
     window->draw(sprite);
