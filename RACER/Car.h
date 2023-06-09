@@ -16,7 +16,8 @@ private:
     sf::RenderWindow* window;
 
 public:
-    Car(float x, float y, float w, float h, float s, float f, float Carmass, sf::Sprite spriteRef, sf::RenderWindow* winD);
+    Car();
+    Car(float x, float y, float w, float h, float s, float f, float Carmass, const sf::Texture& text, sf::RenderWindow* winD);
     void update(float deltaTime);
     v2P::Vector2 getPosition();
     bool CheckIfDeath(float sH);

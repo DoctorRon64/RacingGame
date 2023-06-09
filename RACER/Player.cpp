@@ -4,9 +4,10 @@
 
 using namespace v2P;
 
-Player::Player(float x, float y, float w, float h, float s, float f, float m, const sf::Sprite& spriteRef, sf::RenderWindow* win)
-    : position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f), sprite(spriteRef), mass(m), forces(0.0f, 0.0f), window(win)
+Player::Player(float x, float y, float w, float h, float s, float f, float m, const sf::Texture& text, sf::RenderWindow* win)
+    : position(x, y), width(w), height(h), speed(s), velocity(0.0f, 0.0f), acceleration(0.0f, 0.0f), friction(f), mass(m), forces(0.0f, 0.0f), window(win)
 {
+    sprite = sf::Sprite(text);
     sprite.setScale(width, height);
 }
 

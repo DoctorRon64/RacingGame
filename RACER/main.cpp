@@ -16,7 +16,6 @@ int main()
     // Create Textures
     TextureLibrary textureLibrary;
     textureLibrary.LoadFromFile();
-    textureLibrary.SetSprite();
 
     // Delta time setup
     sf::Clock clock;
@@ -84,6 +83,8 @@ int main()
 
         window->display();
     }
+
+    delete window;
 
     return 0;
 }

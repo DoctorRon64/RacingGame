@@ -18,7 +18,7 @@ private:
     sf::RenderWindow* window;
 
 public:
-    Player(float x, float y, float w, float h, float s, float f, float m, const sf::Sprite& spriteRef, sf::RenderWindow* win);
+    Player(float x, float y, float w, float h, float s, float f, float m, const sf::Texture& text, sf::RenderWindow* win);
     v2P::Vector2 getPosition();
     void setSpeed(float s);
     void ApplyForce(const v2P::Vector2& force);

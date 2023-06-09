@@ -14,9 +14,3 @@ void TextureLibrary::LoadFromFile()
 	LoseTexture.loadFromFile("textures/Lose.png");
 	WinTexture.loadFromFile("textures/Win.png");
 }
-
-void TextureLibrary::SetSprite()
-{
-	PlayerSprite = sf::Sprite(PlayerTexture);
-	CarSprite = sf::Sprite(CarTexture);
-}

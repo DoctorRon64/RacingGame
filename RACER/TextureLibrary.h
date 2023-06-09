@@ -10,11 +10,7 @@ public:
 	sf::Texture LoseTexture;
 	sf::Texture WinTexture;
 
-	sf::Sprite PlayerSprite;
-	sf::Sprite CarSprite;
-
 	TextureLibrary();
 	void LoadFromFile();
-	void SetSprite();
 };
 

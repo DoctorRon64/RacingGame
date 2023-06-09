@@ -1,9 +1,16 @@
 #include "Car.h"
 #include <SFML/Graphics.hpp>
 
-Car::Car(float x, float y, float w, float h, float s, float f, float Carmass, sf::Sprite spriteRef, sf::RenderWindow* winD)
-	: position(x, y), width(w), height(h), speed(s), friction(f), sprite(spriteRef), window(winD)
+Car::Car()
+	: position(0.0f, 0.0f), width(1.0f), height(1.0f), speed(0.0f), friction(0.0f), window(nullptr)
 {
+	sprite = sf::Sprite();
+}
+
+Car::Car(float x, float y, float w, float h, float s, float f, float Carmass, const sf::Texture& text, sf::RenderWindow* winD)
+	: position(x, y), width(w), height(h), speed(s), friction(f), window(winD)
+{
+	sprite = sf::Sprite(text);
 	sprite.setScale(width, height);
 }
 

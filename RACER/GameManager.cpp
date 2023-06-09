@@ -12,7 +12,7 @@ GameManager::GameManager(sf::RenderWindow* win, TextureLibrary* TLib, float sW, 
 
     CarAmount = 10;
 
-    player = new Player(500, (sH - 100), 0.12f, 0.12f, 2000, 4.0f, 1, textureLibrary->PlayerSprite, window);
+    player = new Player(500, (sH - 100), 0.12f, 0.12f, 2000, 4.0f, 1, textureLibrary->PlayerTexture, window);
 }
 
 GameManager::~GameManager() 
@@ -80,5 +80,5 @@ void GameManager::CreateCar()
     }
 
     float maxSize = randomFloat(0, screenWidth - carWidth);
-    car = new Car(maxSize, -100, 0.1f, 0.1f, randomFloat(400, 600), 30, 10, textureLibrary->CarSprite, window);
+    car = new Car(maxSize, -100, 0.1f, 0.1f, randomFloat(400, 600), 30, 10, textureLibrary->CarTexture, window);
 }
