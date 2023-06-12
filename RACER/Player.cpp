@@ -11,9 +11,9 @@ Player::Player(float x, float y, float w, float h, float s, float f, float m, co
     sprite.setScale(width, height);
 }
 
-Vector2 Player::getPosition()
+Vector2& Player::getPosition()
 {
-    return Vector2(position);
+    return position;
 }
 
 void Player::setSpeed(float s)

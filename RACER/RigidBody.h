@@ -18,5 +18,5 @@ public:
     RigidBody(float x, float y, float s, float f, float m);
     void ApplyForce(const v2P::Vector2& force);
     void Update(float deltaTime);
-    v2P::Vector2 getPosition();
+    v2P::Vector2& getPosition(float deltaTime);
 };

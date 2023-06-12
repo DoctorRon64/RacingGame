@@ -1,66 +1,87 @@
 #include "GameManager.h"
 #include <random>
 #include <iostream>
-#include "CollisionDetect.h"
+#include <string>
+#include <SFML\Graphics.hpp>
 
 GameManager::GameManager(sf::RenderWindow* win, TextureLibrary* TLib, float sW, float sH)
-    : window(win), screenWidth(sW), screenHeight(sH), textureLibrary(TLib), player(nullptr), car(nullptr), Score(0), GameState(0)
+    : window(win), screenWidth(sW), screenHeight(sH), textureLibrary(TLib), player(nullptr), Score(0), GameState(0)
 {
     float randomValue = randomFloat(0, screenWidth);
-    CreateCar();
-    carWidth = car->getCarWidth();
 
     CarAmount = 10;
 
+    scoreDisplay = sf::Text();
+    sf::Font font;
+    font.loadFromFile("fonts/Gilroy-ExtraBold.otf");
+    if (!font.loadFromFile("fonts/Gilroy-ExtraBold.otf"))
+    {
+        std::cerr << "Failed to load font!" << std::endl;
+    }
+    scoreDisplay.setFont(font);
+    scoreDisplay.setCharacterSize(20);
+    scoreDisplay.setFillColor(sf::Color::White);
+    scoreDisplay.setPosition(10, 10);
+    scoreDisplay.setString(std::to_string(Score));
+
+
+
     player = new Player(500, (sH - 100), 0.12f, 0.12f, 2000, 4.0f, 1, textureLibrary->PlayerTexture, window);
+    carObj = new Car(0, -100, .1f, .1f, randomFloat(400, 600), 30, 10, textureLibrary->CarTexture, window);
+    colletect = new CollisionDetect(5, 5);
+
+    carWidth = carObj->getCarWidth();
 }
 
 GameManager::~GameManager() 
 {
+    delete carObj;
     delete player;
-    delete car;
     delete textureLibrary;
+    delete colletect;
 }
 
 void GameManager::Update(float deltaTime)
 {
     player->update(screenWidth, deltaTime);
-    CollisionDetect* colletect = new CollisionDetect(player->getPosition(), 100, car->getPosition(), 100);
+    carObj->update(deltaTime);
 
-    if (colletect->ReturnDetectValue() <= 0)
+    if (colletect->ReturnDetectValue(player->getPosition(), carObj->getPosition()) <= 0)
     {
-        delete car;
-        delete colletect;
-        Score++;
+        delete carObj;
+        carObj = nullptr;
+        ScoreToEnd++;
+        CreateCar();
     }
-    
-    if (car == nullptr || car->CheckIfDeath(screenHeight))
-    {
-        delete car;
-        car = nullptr;
-        Score--;
 
-        for (int i = 0; i < CarAmount; i++)
+    if (carObj->CheckIfDeath(screenHeight) == true)
+    {
+        delete carObj;
+        carObj = nullptr;
+        Score++;
+        ScoreToEnd++;
+        CreateCar();
+    }
+
+    if (ScoreToEnd >= 10)
+    {
+        if (Score >= ScoreToEnd / 2)
         {
-            CreateCar();
+            GameState = 2;
+        }
+        else
+        {
+            GameState = 1;
         }
     }
-    else
-    {
-        car->update(deltaTime);
-    }
+    std::cout << window << std::endl;
 
-    if (Score >= 5 && GameState != 2)
-    {
-        GameState = 2;
-        delete player;
-    }
 
-    if (Score <= -5 && GameState != 1) 
-    {
-        GameState = 1;
-        delete player;
-    }
+    window->draw(scoreDisplay);
+
+
+    std::cout << window << std::endl;
+
 }
 
 float GameManager::randomFloat(float min, float max)
@@ -73,12 +94,6 @@ float GameManager::randomFloat(float min, float max)
 
 void GameManager::CreateCar()
 {
-    if (car != nullptr)
-    {
-        delete car;
-        car = nullptr;
-    }
-
     float maxSize = randomFloat(0, screenWidth - carWidth);
-    car = new Car(maxSize, -100, 0.1f, 0.1f, randomFloat(400, 600), 30, 10, textureLibrary->CarTexture, window);
+    carObj = new Car(maxSize, -100, .1f, .1f, randomFloat(400, 600), 30, 10, textureLibrary->CarTexture, window);
 }

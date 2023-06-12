@@ -3,6 +3,7 @@
 #include "Car.h"
 #include <SFML/Graphics.hpp>
 #include "TextureLibrary.h"
+#include "CollisionDetect.h"
 
 using namespace std;
 
@@ -10,9 +11,11 @@ class GameManager
 {
 private:
     Player* player;
-    Car* car;
+    Car* carObj;
     TextureLibrary* textureLibrary;
     sf::RenderWindow* window;
+    CollisionDetect* colletect;
+    sf::Text scoreDisplay;
     float screenWidth;
     float screenHeight;
     float carWidth;
@@ -25,6 +28,7 @@ public:
     void CreateCar();
 
     int Score;
+    int ScoreToEnd;
     int GameState;
     int CarAmount;
 };
