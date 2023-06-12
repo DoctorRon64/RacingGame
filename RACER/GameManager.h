@@ -16,9 +16,12 @@ private:
     sf::RenderWindow* window;
     CollisionDetect* colletect;
     sf::Text scoreDisplay;
+    sf::Text TextDisplay;
     float screenWidth;
     float screenHeight;
     float carWidth;
+
+    void SetText();
 
 public:
     GameManager(sf::RenderWindow* win, TextureLibrary* TLib, float sW, float sH);

@@ -9,6 +9,8 @@ public:
 	sf::Texture BgTexture;
 	sf::Texture LoseTexture;
 	sf::Texture WinTexture;
+	sf::Font fontBold;
+	sf::Font font;
 
 	TextureLibrary();
 	void LoadFromFile();

@@ -13,4 +13,6 @@ void TextureLibrary::LoadFromFile()
 	BgTexture.loadFromFile("textures/Background.png");
 	LoseTexture.loadFromFile("textures/Lose.png");
 	WinTexture.loadFromFile("textures/Win.png");
+	fontBold.loadFromFile("fonts/Gilroy-ExtraBold.otf");
+	font.loadFromFile("fonts/Gilroy-Light.otf");
 }
