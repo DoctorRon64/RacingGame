@@ -1,10 +1,72 @@
-#include <SFML/Graphics.hpp>
 #include "TextureLibrary.h"
 #include "GameManager.h"
+#include <iostream>
+#include <SFML/Graphics.hpp>
 #include <memory>
+#include <cstdlib>
+#include <iomanip>
+#include <chrono>
+#include <fstream>
+#include <string>
+
+std::string getCurrentTimeAsString() {
+    auto now = std::chrono::system_clock::now();
+    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
+
+    struct tm timeinfo;
+    localtime_s(&timeinfo, &currentTime);
+
+    char buffer[80];
+    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &timeinfo);
+
+    return std::string(buffer);
+}
+
+bool isFileEmpty(const std::string& filename) {
+    std::ifstream file(filename);
+    return file.peek() == std::ifstream::traits_type::eof();
+}
+
+void saveScoreToFile(std::string HighScoreName, int score) {
+    std::string filename = "highscore.txt";
+    std::ofstream outputFile(filename, std::ios::app);
+
+    if (outputFile.is_open()) {
+        std::string currentDate = getCurrentTimeAsString();
+
+        if (isFileEmpty(filename)) {
+            outputFile << "====== High Scores ======" << std::endl;
+        }
+
+        outputFile << "Score: " << score << " Date Made: " << currentDate << " By: " << HighScoreName << std::endl;
+        outputFile.close();
+        //std::cout << "Score saved to file." << std::endl;
+    }
+    else {
+        std::cout << "Failed to save score to file." << std::endl;
+    }
+}
+
+void displayFileContents(const std::string& filename) {
+    std::ifstream inputFile(filename);
+
+    if (inputFile.is_open()) {
+        std::string line;
+        while (std::getline(inputFile, line)) {
+            std::cout << line << std::endl;
+        }
+        inputFile.close();
+    }
+    else {
+        std::cout << "Failed to open file: " << filename << std::endl;
+    }
+}
 
 int main()
 {
+    std::string highScoreName;
+    displayFileContents("Highscore.txt");
+
     // Render window
     sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1000, 500), "SUPER ULTRA OMEGA ULTIMATE MEGA RACERRRRRRR!!!!!!!", sf::Style::Close | sf::Style::Resize);
 
@@ -41,6 +103,11 @@ int main()
 
     loseSprite.setScale(screenWidthFloat / textureLibrary.LoseTexture.getSize().x, screenHeightFloat / textureLibrary.LoseTexture.getSize().y);
     winSprite.setScale(screenWidthFloat / textureLibrary.WinTexture.getSize().x, screenHeightFloat / textureLibrary.WinTexture.getSize().y);
+
+    gameState = 0;
+    gameState = 0;
+    gameState = 0;
+
 
     // Game loop
     while (window->isOpen())
@@ -84,6 +151,15 @@ int main()
         window->display();
     }
 
+    if (!window->isOpen())
+    {
+        std::cout << "Enter your High Score Name: ";
+        std::getline(std::cin, highScoreName);
+
+        std::cout << "Your score was saved on: " << highScoreName << std::endl;
+    }
+    
+    saveScoreToFile(highScoreName, gameManager.Score);
     delete window;
 
     return 0;

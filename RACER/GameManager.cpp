@@ -9,7 +9,7 @@ GameManager::GameManager(sf::RenderWindow* win, TextureLibrary* TLib, float sW, 
 {
     float randomValue = randomFloat(0, screenWidth);
 
-    CarAmount = 3;
+    CarAmount = 5;
 
     SetText();
 
@@ -19,7 +19,7 @@ GameManager::GameManager(sf::RenderWindow* win, TextureLibrary* TLib, float sW, 
     carWidth = carObj->getCarWidth();
     delete carObj;
 
-    colletect = new CollisionDetect(5, 5);
+    colletect = new CollisionDetect(7, 5);
     carList = std::vector<Car*>();
 
     CreateCars();
@@ -33,9 +33,9 @@ GameManager::~GameManager()
 
     for (int i = 0; i < carList.size(); i++)
     {
-        carList.erase(carList.begin() + i);
         delete carList[i];
     }
+    carList.clear();
 }
 
 void GameManager::Update(float deltaTime)
@@ -48,24 +48,33 @@ void GameManager::Update(float deltaTime)
 
         if (colletect->ReturnDetectValue(player->getPosition(), carList[i]->getPosition()) <= 0)
         {
-            Score++;
             ScoreToEnd++;
-            carList.erase(carList.begin() + i);
+            Score++;
             delete carList[i];
+            carList.erase(carList.begin() + i);
+            i--;
+            continue;
         }
 
         if (carList[i]->CheckIfDeath(screenHeight) == true)
         {
             ScoreToEnd++;
-            carList.erase(carList.begin() + i);
             delete carList[i];
-            CreateCars();
+            carList.erase(carList.begin() + i);
+            i--;
+            continue;
         }
     }
 
-    if (ScoreToEnd >= 10)
+    timer += deltaTime;
+    if (timer >= 1.0f) {
+        CreateCars();
+        timer = 0.0f;
+    }
+
+    if (ScoreToEnd >= 100)
     {
-        if (Score >= ScoreToEnd / 2)
+        if (Score >= ScoreToEnd/2)
         {
             GameState = 2;
         }
@@ -76,7 +85,6 @@ void GameManager::Update(float deltaTime)
     }
 
     scoreDisplay.setString(std::to_string(Score));
-    std::cout << scoreDisplay.getString().toAnsiString() << std::endl;
 
     window->draw(scoreDisplay);
     window->draw(TextDisplay);
@@ -98,8 +106,6 @@ float GameManager::randomFloat(float min, float max)
     std::uniform_real_distribution<float> dis(min, max);
     return dis(gen);
 }
-
-
 
 void GameManager::SetText()
 {

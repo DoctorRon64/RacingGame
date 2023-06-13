@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "TextureLibrary.h"
 #include "CollisionDetect.h"
+#include <memory>
 
 using namespace std;
 
@@ -20,15 +21,15 @@ private:
     float screenWidth;
     float screenHeight;
     float carWidth;
-
+    float timer;
     void SetText();
-    void CreateCars();
 
 public:
     GameManager(sf::RenderWindow* win, TextureLibrary* TLib, float sW, float sH);
     ~GameManager();
     void Update(float deltaTime);
     float randomFloat(float min, float max);
+    void CreateCars();
 
     int Score;
     int ScoreToEnd;

@@ -3,18 +3,16 @@
 #include <iostream>
 
 Car::Car()
-    : position(0.0f, 0.0f), width(1.0f), height(1.0f), speed(0.0f), friction(0.0f), window(nullptr)
+    : position(0.0f, 0.0f), width(1.0f), height(1.0f), speed(0.0f), friction(0.0f), window(nullptr), rb(RigidBody())
 {
     sprite = sf::Sprite();
 }
 
 Car::Car(float x, float y, float w, float h, float s, float f, float Carmass, const sf::Texture& text, sf::RenderWindow* winD)
-    : position(x, y), width(w), height(h), speed(s), friction(f), window(winD)
+    : position(x, y), width(w), height(h), speed(s), friction(f), window(winD), rb(x, y, s, f, Carmass)
 {
     sprite = sf::Sprite(text);
     sprite.setScale(0.1f, 0.1f);
-
-    rb = RigidBody(x, y, s, f, Carmass);
 }
 
 void Car::update(float deltaTime)
