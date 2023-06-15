@@ -69,7 +69,8 @@ int main()
     displayFileContents("Highscore.txt");
 
     // Render window
-    sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1000, 500), "SUPER ULTRA OMEGA ULTIMATE MEGA RACERRRRRRR!!!!!!!", sf::Style::Close | sf::Style::Resize);
+    sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(960, 540), "SUPER ULTRA OMEGA ULTIMATE MEGA RACERRRRRRR!!!!!!!", sf::Style::Close | sf::Style::Resize);
+    sf::View view(window->getDefaultView());
 
     // Icon
     sf::Image windowIcon;
@@ -102,6 +103,7 @@ int main()
     loseSprite.setTexture(textureLibrary->LoseTexture);
     winSprite.setTexture(textureLibrary->WinTexture);
 
+    bgSprite.setScale(screenWidthFloat / textureLibrary->BgTexture.getSize().x, screenHeightFloat / textureLibrary->BgTexture.getSize().y);
     loseSprite.setScale(screenWidthFloat / textureLibrary->LoseTexture.getSize().x, screenHeightFloat / textureLibrary->LoseTexture.getSize().y);
     winSprite.setScale(screenWidthFloat / textureLibrary->WinTexture.getSize().x, screenHeightFloat / textureLibrary->WinTexture.getSize().y);
 
@@ -130,10 +132,16 @@ int main()
             break;
         case 1:
             window->draw(loseSprite);
+            view.zoom(.1f);
+
+
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             {   
                 window->close();
             }
+
+            view.zoom(1.0f);
+
             break;
         case 2:
             window->draw(winSprite);
