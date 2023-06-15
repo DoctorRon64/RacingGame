@@ -18,7 +18,7 @@ std::string getCurrentTimeAsString() {
     localtime_s(&timeinfo, &currentTime);
 
     char buffer[80];
-    std::strftime(buffer, sizeof(buffer), "%H:%M:%S &d-&m-&Y", &timeinfo);
+    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &timeinfo);
 
     return std::string(buffer);
 }
