@@ -8,6 +8,7 @@
 #include <chrono>
 #include <fstream>
 #include <string>
+#include <Windows.h>
 
 std::string getCurrentTimeAsString() {
     auto now = std::chrono::system_clock::now();
@@ -76,8 +77,8 @@ int main()
     window->setIcon(windowIcon.getSize().x, windowIcon.getSize().y, windowIcon.getPixelsPtr());
 
     // Create Textures
-    TextureLibrary textureLibrary;
-    textureLibrary.LoadFromFile();
+    TextureLibrary* textureLibrary = new TextureLibrary();
+    textureLibrary->LoadFromFile();
 
     // Delta time setup
     sf::Clock clock;
@@ -91,23 +92,20 @@ int main()
     float screenWidthFloat = static_cast<float>(screenWidth);
     float screenHeightFloat = static_cast<float>(screenHeight);
 
-    GameManager gameManager(window, &textureLibrary, screenWidthFloat, screenHeightFloat);
+    GameManager gameManager(window, textureLibrary, screenWidthFloat, screenHeightFloat);
 
     // BackgroundSprites
     sf::Sprite bgSprite;
     sf::Sprite loseSprite;
     sf::Sprite winSprite;
-    bgSprite.setTexture(textureLibrary.BgTexture);
-    loseSprite.setTexture(textureLibrary.LoseTexture);
-    winSprite.setTexture(textureLibrary.WinTexture);
+    bgSprite.setTexture(textureLibrary->BgTexture);
+    loseSprite.setTexture(textureLibrary->LoseTexture);
+    winSprite.setTexture(textureLibrary->WinTexture);
 
-    loseSprite.setScale(screenWidthFloat / textureLibrary.LoseTexture.getSize().x, screenHeightFloat / textureLibrary.LoseTexture.getSize().y);
-    winSprite.setScale(screenWidthFloat / textureLibrary.WinTexture.getSize().x, screenHeightFloat / textureLibrary.WinTexture.getSize().y);
+    loseSprite.setScale(screenWidthFloat / textureLibrary->LoseTexture.getSize().x, screenHeightFloat / textureLibrary->LoseTexture.getSize().y);
+    winSprite.setScale(screenWidthFloat / textureLibrary->WinTexture.getSize().x, screenHeightFloat / textureLibrary->WinTexture.getSize().y);
 
     gameState = 0;
-    gameState = 0;
-    gameState = 0;
-
 
     // Game loop
     while (window->isOpen())
@@ -132,9 +130,17 @@ int main()
             break;
         case 1:
             window->draw(loseSprite);
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            {   
+                window->close();
+            }
             break;
         case 2:
             window->draw(winSprite);
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            {
+                window->close();
+            }
             break;
         }
 
