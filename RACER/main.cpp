@@ -18,7 +18,7 @@ std::string getCurrentTimeAsString() {
     localtime_s(&timeinfo, &currentTime);
 
     char buffer[80];
-    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &timeinfo);
+    std::strftime(buffer, sizeof(buffer), "%H:%M:%S &d-&m-&Y", &timeinfo);
 
     return std::string(buffer);
 }
@@ -70,7 +70,6 @@ int main()
 
     // Render window
     sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(960, 540), "SUPER ULTRA OMEGA ULTIMATE MEGA RACERRRRRRR!!!!!!!", sf::Style::Close | sf::Style::Resize);
-    sf::View view(window->getDefaultView());
 
     // Icon
     sf::Image windowIcon;
@@ -132,16 +131,10 @@ int main()
             break;
         case 1:
             window->draw(loseSprite);
-            view.zoom(.1f);
-
-
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             {   
                 window->close();
             }
-
-            view.zoom(1.0f);
-
             break;
         case 2:
             window->draw(winSprite);
